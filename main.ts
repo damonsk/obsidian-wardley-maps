@@ -1,4 +1,9 @@
 import { App, Editor, MarkdownView, Modal, Notice, Plugin, PluginSettingTab, Setting } from 'obsidian';
+// import wmlandscape from 'wmlandscape';
+import { Root, createRoot } from 'react-dom/client';
+import React, {StrictMode} from 'react';
+import {MapViewContainer} from './MapViewContainer';
+import * as ReactDOM from 'react-dom';
 
 // Remember to rename these classes and interfaces!
 
@@ -15,6 +20,19 @@ export default class MyPlugin extends Plugin {
 
 	async onload() {
 		await this.loadSettings();
+
+		this.registerMarkdownCodeBlockProcessor('wardleymap', (source, el, ctx) => {
+			console.log("Wardley Map Code Block Processor", [source, el, ctx]);	
+			el.appendChild(document.createTextNode(source));
+			let root: Root;
+			if (el instanceof Element) {
+
+				let reactComponent = React.createElement(MapViewContainer, { mapText: source });
+				el.classList.add('wardley-map-root');
+				root = createRoot(el);
+				root.render(reactComponent);
+			} 
+		});
 
 		// This creates an icon in the left ribbon.
 		const ribbonIconEl = this.addRibbonIcon('dice', 'Sample Plugin', (evt: MouseEvent) => {
