@@ -1,7 +1,7 @@
 {
 	"id": "wardley-maps",
 	"name": "Wardley Maps",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"minAppVersion": "0.15.0",
 	"description": "View and edit Wardley Maps in Obsidian using the Online Wardley Maps format.",
 	"author": "Obsidian",
