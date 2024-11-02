@@ -56,14 +56,12 @@ To install Obsidian Wardley Maps as a beta plugin:
 3. Place the downloaded files into this new folder.
 4. Open Obsidian settings `Settings > Community plugins`, and enable Wardley Maps.
 
-## Funding URL
+## Support the Project
 
-You can include funding URLs where people who use your plugin can financially support it.
+If you find [obsidian-wardley-maps](https://github.com/damonsk/obsidian-wardley-maps), [OnlineWardleyMaps](https://github.com/damonsk/onlinewardleymaps) or [vscode-wardley-maps](https://github.com/damonsk/vscode-wardley-maps) valuable, consider supporting its development:
 
-The simple way is to set the `fundingUrl` field to your link in your `manifest.json` file:
+[![Patreon](https://c5.patreon.com/external/logo/become_a_patron_button.png)](https://www.patreon.com/mapsascode/overview)
 
-```json
-{
-    "fundingUrl": "https://www.patreon.com/mapsascode"
-}
-```
+Follow on X (Twitter) [@MapsAsCode](https://x.com/mapsascode) for updates and announcements!
+
+Your support helps maintain and improve this plugin as well as OnlineWardleyMaps and vscode-wardley-maps. Every contribution is appreciated. Thank you for your support!
