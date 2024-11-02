@@ -56,6 +56,10 @@ To install Obsidian Wardley Maps as a beta plugin:
 3. Place the downloaded files into this new folder.
 4. Open Obsidian settings `Settings > Community plugins`, and enable Wardley Maps.
 
+## License
+
+This project is licensed under the [AGPL-3.0 license](LICENSE).
+
 ## Support the Project
 
 If you find [obsidian-wardley-maps](https://github.com/damonsk/obsidian-wardley-maps), [OnlineWardleyMaps](https://github.com/damonsk/onlinewardleymaps) or [vscode-wardley-maps](https://github.com/damonsk/vscode-wardley-maps) valuable, consider supporting its development:
