@@ -5,20 +5,27 @@ import { FeatureSwitches, ModKeyPressedProvider } from 'wmlandscape';
 import { Converter } from 'wmlandscape';
 
 type MapViewProps = {
-  mapText: string;
+  markdownText: string;
+  mutateMapText(text:string): void; 
 };
 
 export const MapViewContainer = (props: MapViewProps) => {
 
-  const {mapText} = props;
+  const {markdownText, mutateMapText} = props;
 
   let obsidianFeatureSwitches = {
 		...FeatureSwitches.featureSwitches,
 		showToggleFullscreen: false,
+		enableQuickAdd: false,
+		showMapToolbar: false,
+		showMiniMap: false,
+		allowMapZoomMouseWheel: false,
 	};
 
+  const [mapText, setMapText] = useState('');
 	const [mapTitle, setMapTitle] = useState('Untitled Map');
 	const [mapComponents, setMapComponents] = useState([]);
+	const [mapSize, setMapSize] = useState({ width: 0, height: 0 });
 	const [mapSubMaps, setMapSubMaps] = useState([]);
 	const [mapMarkets, setMarkets] = useState([]);
 	const [mapEcosystems, setEcosystems] = useState([]);
@@ -41,10 +48,31 @@ export const MapViewContainer = (props: MapViewProps) => {
 		width: 500,
 		height: 500,
 	});
+
+	const [mapCanvasDimensions, setMapCanvasDimensions] = useState({
+		width: 500,
+		height: 500,
+	});
+
 	const [mapEvolutionStates, setMapEvolutionStates] = useState(
 		Defaults.EvolutionStages,
 	);
 	const [mapStyle, setMapStyle] = useState('plain');
+
+	useEffect(() => {
+		setMapDimensions({
+			width: mapSize.width > 0 ? mapSize.width : 500,
+			height: mapSize.height > 0 ? mapSize.height : 500,
+		});
+		setMapCanvasDimensions({
+			width: mapSize.width > 0 ? mapSize.width * 0.92 : 500,
+			height: mapSize.height > 0 ? mapSize.height : 500,
+		})
+	}, [mapSize]);
+
+  useEffect(()=>{
+    setMapText(markdownText);
+  },[markdownText]);
 
   useEffect(() => {
 		try {
@@ -65,6 +93,7 @@ export const MapViewContainer = (props: MapViewProps) => {
 			setMapAttitudes(r.attitudes);
 			setMapStyle(r.presentation.style);
 			setMapAccelerators(r.accelerators);
+			setMapSize(r.presentation.size);
 			setMapYAxis(r.presentation.yAxis);
 			setMapAnnotationsPresentation(r.presentation.annotations);
 			setMapEvolutionStates({
@@ -101,11 +130,11 @@ export const MapViewContainer = (props: MapViewProps) => {
         mapStyleDefs={MapStyles.Plain}
         mapYAxis={mapYAxis}
         mapDimensions={mapDimensions}
-        mapCanvasDimensions={mapDimensions}
+        mapCanvasDimensions={mapCanvasDimensions}
         mapEvolutionStates={mapEvolutionStates}
         mapRef={null}
         mapText={mapText}
-        mutateMapText={() => {}}
+        mutateMapText={ (t: string) => mutateMapText(t)}
         setMetaText={() => console.log('set meta text not implemented')}
         metaText={() => console.log('meta text not implemented')}
         evolutionOffsets={Defaults.EvoOffsets}

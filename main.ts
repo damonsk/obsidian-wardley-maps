@@ -1,11 +1,7 @@
-import { App, Editor, MarkdownView, Modal, Notice, Plugin, PluginSettingTab, Setting } from 'obsidian';
-// import wmlandscape from 'wmlandscape';
+import { App, Editor, MarkdownView, Modal, Notice, Plugin, PluginSettingTab, Setting, TFile } from 'obsidian';
 import { Root, createRoot } from 'react-dom/client';
-import React, {StrictMode} from 'react';
+import React from 'react';
 import {MapViewContainer} from './MapViewContainer';
-import * as ReactDOM from 'react-dom';
-
-// Remember to rename these classes and interfaces!
 
 interface MyPluginSettings {
 	mySetting: string;
@@ -21,18 +17,50 @@ export default class MyPlugin extends Plugin {
 	async onload() {
 		await this.loadSettings();
 
-		this.registerMarkdownCodeBlockProcessor('wardleymap', (source, el, ctx) => {
+		// Inside the registerMarkdownCodeBlockProcessor callback
+		this.registerMarkdownCodeBlockProcessor('wardleymap', async (source, el, ctx) => {
 			console.log("Wardley Map Code Block Processor", [source, el, ctx]);	
 			el.appendChild(document.createTextNode(source));
 			let root: Root;
 			if (el instanceof Element) {
+				const reactComponent = React.createElement(MapViewContainer, {
+					markdownText: source,
+					mutateMapText: async (newText: string) => {
+						// Get the active file from the context
+						const activeFile = ctx.sourcePath ? this.app.vault.getAbstractFileByPath(ctx.sourcePath) : null;
 
-				let reactComponent = React.createElement(MapViewContainer, { mapText: source });
+						// Proceed if activeFile is found and is a TFile
+						if (activeFile instanceof TFile) {
+							// Read the current content of the file
+							const fileContent = await this.app.vault.read(activeFile);
+
+							// Split file content by lines for easier manipulation
+							const lines = fileContent.trim().split('\n');
+
+							// Replace the lines for the `wardleymap` block
+							// Locate the block by line numbers provided in ctx
+							const startLine = ctx.getSectionInfo(el)?.lineStart ?? 0;
+							const endLine = ctx.getSectionInfo(el)?.lineEnd ?? 0;
+
+							// Update the block content in-place
+							lines.splice(startLine + 1, endLine - startLine - 1, newText.trim());
+
+							// Join lines back and save the file
+							const updatedContent = lines.join('\n');
+							await this.app.vault.modify(activeFile, updatedContent);
+
+							console.log('Wardley map block updated successfully');
+						} else {
+							console.error('Unable to locate the active file or file is not a TFile');
+						}
+					}
+				});
 				el.classList.add('wardley-map-root');
 				root = createRoot(el);
 				root.render(reactComponent);
-			} 
+			}
 		});
+
 
 		// This creates an icon in the left ribbon.
 		const ribbonIconEl = this.addRibbonIcon('dice', 'Sample Plugin', (evt: MouseEvent) => {
