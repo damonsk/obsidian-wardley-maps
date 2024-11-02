@@ -1,71 +1,60 @@
-# Obsidian Sample Plugin
+# Obsidian Wardley Maps Plugin
 
-This is a sample plugin for Obsidian (https://obsidian.md).
+This is plugin for Obsidian (https://obsidian.md) that enables displaying and editing of Wardley Maps in the [OnlineWardleyMaps](https://onlinewardleymaps.com) format.
 
-This project uses TypeScript to provide type checking and documentation.
-The repo depends on the latest plugin API (obsidian.d.ts) in TypeScript Definition format, which contains TSDoc comments describing what it does.
+## Usage
 
-**Note:** The Obsidian API is still in early alpha and is subject to change at any time!
+Add a code block to your markdown file using Source mode ` ```wardleymap ` include with a closing ` ``` `.  View the raw source of this file to see an example below.
 
-This sample plugin demonstrates some of the basic functionality the plugin API can do.
-- Adds a ribbon icon, which shows a Notice when clicked.
-- Adds a command "Open Sample Modal" which opens a Modal.
-- Adds a plugin setting tab to the settings page.
-- Registers a global click event and output 'click' to the console.
-- Registers a global interval which logs 'setInterval' to the console.
+### Example
 
-## First time developing plugins?
+```wardleymap
+title Sample Wardley Map
+note "This is a simple example" at 0.5 0.5 [0.89, 0.08]
 
-Quick starting guide for new plugin devs:
+component Customer [0.58, 0.17] 
+component Website [0.52, 0.68] 
+component Payment Gateway [0.25, 0.60] 
+component Hosting [0.3, 0.4] 
 
-- Check if [someone already developed a plugin for what you want](https://obsidian.md/plugins)! There might be an existing plugin similar enough that you can partner up with.
-- Make a copy of this repo as a template with the "Use this template" button (login to GitHub if you don't see it).
-- Clone your repo to a local development folder. For convenience, you can place this folder in your `.obsidian/plugins/your-plugin-name` folder.
-- Install NodeJS, then run `npm i` in the command line under your repo folder.
-- Run `npm run dev` to compile your plugin from `main.ts` to `main.js`.
-- Make changes to `main.ts` (or create new `.ts` files). Those changes should be automatically compiled into `main.js`.
-- Reload Obsidian to load the new version of your plugin.
-- Enable plugin in settings window.
-- For updates to the Obsidian API run `npm update` in the command line under your repo folder.
+Customer -> Website
+Website -> Payment Gateway
+Website -> Hosting
 
-## Releasing new releases
+size [800,400]
+```
 
-- Update your `manifest.json` with your new version number, such as `1.0.1`, and the minimum Obsidian version required for your latest release.
-- Update your `versions.json` file with `"new-plugin-version": "minimum-obsidian-version"` so older versions of Obsidian can download an older version of your plugin that's compatible.
-- Create new GitHub release using your new version number as the "Tag version". Use the exact version number, don't include a prefix `v`. See here for an example: https://github.com/obsidianmd/obsidian-sample-plugin/releases
-- Upload the files `manifest.json`, `main.js`, `styles.css` as binary attachments. Note: The manifest.json file must be in two places, first the root path of your repository and also in the release.
-- Publish the release.
+## Getting Started
 
-> You can simplify the version bump process by running `npm version patch`, `npm version minor` or `npm version major` after updating `minAppVersion` manually in `manifest.json`.
-> The command will bump version in `manifest.json` and `package.json`, and add the entry for the new version to `versions.json`
+> **⚠️ Important: Installer Version Requirement**  
+> Wardley Maps requires a recent version of the Obsidian installer. If you experience issues with the plugin not loading properly:
+> 
+> 1. First, try updating Obsidian normally at `Settings > General > Check for updates`.
+> 
+> 2. If issues persist, manually update your Obsidian installer:
+>    - Download the latest installer from [Obsidian's download page](https://obsidian.md/download)
+>    - Close Obsidian completely
+>    - Run the new installer
+> 
+> For more details, see [Obsidian's guide on installer updates](https://help.obsidian.md/Getting+started/Update+Obsidian#Installer+updates).
 
-## Adding your plugin to the community plugin list
+Currently, Wardley Maps is available through [Beta Quickstart](#beta-quickstart-recommended) or [Manual Installation](#manual-installation). Community plugin support is coming soon.
 
-- Check the [plugin guidelines](https://docs.obsidian.md/Plugins/Releasing/Plugin+guidelines).
-- Publish an initial version.
-- Make sure you have a `README.md` file in the root of your repo.
-- Make a pull request at https://github.com/obsidianmd/obsidian-releases to add your plugin.
+### Beta Quickstart (Recommended)
 
-## How to use
+To install Obsidian Wardley Maps as a beta plugin:
 
-- Clone this repo.
-- Make sure your NodeJS is at least v16 (`node --version`).
-- `npm i` or `yarn` to install dependencies.
-- `npm run dev` to start compilation in watch mode.
+1. Install the BRAT plugin if you haven't already. [Click here](obsidian://show-plugin?id=obsidian42-brat) to install BRAT in Obsidian.
+2. Open the command palette and run the command **"BRAT: Add a beta plugin for testing"**.
+3. Copy and paste this link into the modal: https://github.com/damonsk/obsidian-wardley-maps and click "Add Plugin" and wait for the installation.
+4. Go to `Settings > Community plugins` and refresh the list of plugins. Enable "Wardley Maps".
 
-## Manually installing the plugin
+### Manual Installation
 
-- Copy over `main.js`, `styles.css`, `manifest.json` to your vault `VaultFolder/.obsidian/plugins/your-plugin-id/`.
-
-## Improve code quality with eslint (optional)
-- [ESLint](https://eslint.org/) is a tool that analyzes your code to quickly find problems. You can run ESLint against your plugin to find common bugs and ways to improve your code. 
-- To use eslint with this project, make sure to install eslint from terminal:
-  - `npm install -g eslint`
-- To use eslint to analyze this project use this command:
-  - `eslint main.ts`
-  - eslint will then create a report with suggestions for code improvement by file and line number.
-- If your source code is in a folder, such as `src`, you can use eslint with this command to analyze all files in that folder:
-  - `eslint .\src\`
+1. Download `main.js`, `manifest.json`, and `styles.css` from the [latest release](https://github.com/damonsk/obsidian-wardley-maps/releases/latest).
+2. Create a folder named `obsidian-wardley-maps` in your vault's `<Vault>/.obsidian/plugins/` directory.
+3. Place the downloaded files into this new folder.
+4. Open Obsidian settings `Settings > Community plugins`, and enable Wardley Maps.
 
 ## Funding URL
 
@@ -75,22 +64,6 @@ The simple way is to set the `fundingUrl` field to your link in your `manifest.j
 
 ```json
 {
-    "fundingUrl": "https://buymeacoffee.com"
+    "fundingUrl": "https://www.patreon.com/mapsascode"
 }
 ```
-
-If you have multiple URLs, you can also do:
-
-```json
-{
-    "fundingUrl": {
-        "Buy Me a Coffee": "https://buymeacoffee.com",
-        "GitHub Sponsor": "https://github.com/sponsors",
-        "Patreon": "https://www.patreon.com/"
-    }
-}
-```
-
-## API Documentation
-
-See https://github.com/obsidianmd/obsidian-api

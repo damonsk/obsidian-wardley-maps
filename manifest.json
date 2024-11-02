@@ -1,11 +1,11 @@
 {
 	"id": "wardley-maps",
 	"name": "Wardley Maps",
-	"version": "1.0.0",
+	"version": "0.1.0",
 	"minAppVersion": "0.15.0",
-	"description": "Demonstrates some of the capabilities of the Obsidian API.",
+	"description": "View and edit Wardley Maps in Obsidian using the Online Wardley Maps format.",
 	"author": "Obsidian",
-	"authorUrl": "https://obsidian.md",
-	"fundingUrl": "https://obsidian.md/pricing",
-	"isDesktopOnly": false
+	"authorUrl": "https://github.com/damonsk/obsidian-wardley-maps",
+	"isDesktopOnly": false,
+	"fundingUrl": "https://www.patreon.com/mapsascode"
 }
