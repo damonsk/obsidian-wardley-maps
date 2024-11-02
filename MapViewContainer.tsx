@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
+// @ts-ignore
 import { MapView, MapStyles, Defaults } from 'wmlandscape';
+// @ts-ignore
 import { FeatureSwitchesProvider } from 'wmlandscape';
+// @ts-ignore
 import { FeatureSwitches, ModKeyPressedProvider } from 'wmlandscape';
+// @ts-ignore
 import { Converter } from 'wmlandscape';
 
 type MapViewProps = {
