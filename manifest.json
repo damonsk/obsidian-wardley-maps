@@ -4,7 +4,7 @@
 	"version": "1.0.4",
 	"minAppVersion": "0.15.0",
 	"description": "View and edit Wardley Maps in Obsidian using the Online Wardley Maps format.",
-	"author": "Obsidian",
+	"author": "Damon Skelhorn",
 	"authorUrl": "https://github.com/damonsk/obsidian-wardley-maps",
 	"isDesktopOnly": false,
 	"fundingUrl": "https://www.patreon.com/mapsascode"
