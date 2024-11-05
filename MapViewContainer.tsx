@@ -80,7 +80,7 @@ export const MapViewContainer = (props: MapViewProps) => {
 
   useEffect(() => {
 		try {
-			var r = new Converter(obsidianFeatureSwitches).parse(mapText);
+			let r = new Converter(obsidianFeatureSwitches).parse(mapText);
 			setMapTitle(r.title);
 			setMapAnnotations(r.annotations);
 			setMapAnchors(r.anchors);
