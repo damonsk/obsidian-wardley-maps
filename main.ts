@@ -15,7 +15,6 @@ export default class WardleyMapsPlugin extends Plugin {
 	settings: WardleyMapsPluginSettings;
 
 	async onload() {
-		await this.loadSettings();
 		this.registerMarkdownCodeBlockProcessor('wardleymap', async (source, el, ctx) => {
 			el.appendChild(document.createTextNode(source));
 			let root: Root;

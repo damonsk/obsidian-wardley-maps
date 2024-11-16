@@ -1,6 +1,6 @@
-# Obsidian Wardley Maps Plugin
+# Wardley Maps Plugin
 
-This is plugin for Obsidian (https://obsidian.md) that enables displaying and editing of Wardley Maps in the [OnlineWardleyMaps](https://onlinewardleymaps.com) format.
+This is plugin enables displaying and editing of Wardley Maps in the [OnlineWardleyMaps](https://onlinewardleymaps.com) format.
 
 ## Usage
 
