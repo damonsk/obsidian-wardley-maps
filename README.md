@@ -51,26 +51,11 @@ size [800,400]
 >    - Download the latest installer from [Obsidian's download page](https://obsidian.md/download)
 >    - Close Obsidian completely
 >    - Run the new installer
-> 
-> For more details, see [Obsidian's guide on installer updates](https://help.obsidian.md/Getting+started/Update+Obsidian#Installer+updates).
 
-Currently, Wardley Maps is available through [Beta Quickstart](#beta-quickstart-recommended) or [Manual Installation](#manual-installation). Community plugin support is coming soon.
-
-### Beta Quickstart (Recommended)
-
-To install Obsidian Wardley Maps as a beta plugin:
-
-1. Install the BRAT plugin if you haven't already. [Click here](obsidian://show-plugin?id=obsidian42-brat) to install BRAT in Obsidian.
-2. Open the command palette and run the command **"BRAT: Add a beta plugin for testing"**.
-3. Copy and paste this link into the modal: https://github.com/damonsk/obsidian-wardley-maps and click "Add Plugin" and wait for the installation.
-4. Go to `Settings > Community plugins` and refresh the list of plugins. Enable "Wardley Maps".
-
-### Manual Installation
-
-1. Download `main.js`, `manifest.json`, and `styles.css` from the [latest release](https://github.com/damonsk/obsidian-wardley-maps/releases/latest).
-2. Create a folder named `obsidian-wardley-maps` in your vault's `<Vault>/.obsidian/plugins/` directory.
-3. Place the downloaded files into this new folder.
-4. Open Obsidian settings `Settings > Community plugins`, and enable Wardley Maps.
+1. Open Obsidian Settings
+2. Navigate to "Community plugins" and click "Browse"
+3. Search for "Wardley Maps" and click Install
+4. Enable the plugin in Community plugins
 
 ## License
 
